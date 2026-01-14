@@ -1,0 +1,69 @@
+---
+title: "Working With Data 1"
+authors: Andrea Paz-Lacevex, Lance Takata, Paige Gardner
+format: html
+editor: visual
+---
+
+## 
+
+In our Seaside Chat, we will be teaching about the use of some of the useful functions in tidyverse to work with data, such as:
+
+-   Working with pre-existing data sets
+
+-   Selecting ranges of data that we're interested in exploring
+
+-   Practice with data manipulation
+
+*This activity assumes students are somewhat familiar with the tidyverse package*
+
+# Learning Outcomes
+
+By the end of our Seaside Chat, students will be able to:
+
+-   Use tidyverse functions mutate(), case_when() to successfully create new columns in your dataframe
+
+## Why did we pick this topic?
+
+As you learn new methods for working with data in R, it is important to practice those skills. For more experienced users, it is just as important to continue learning new skills that may improve your effectiveness and efficiency.
+
+We will be working with a pre-existing dataset about crabs. You will need to load the package and the data into R.
+
+Let's get into it!
+
+## 1. Set Up
+
+Load in the required packages and data. Open the data frame and notice the column names. We will have you run some basic functions to check your understanding of the data and structure.
+
+```{r}
+#Run this line if you do not have tidyverse already installed
+install.packages("tidyverse")
+library(tidyverse)
+
+# Load in the package and load in the data
+install.packages("HDclassif")
+library("HDclassif")
+
+#Load data
+data(Crabs)
+
+#Let's explore the data!
+#First, let's check the dataframe by clicking on the top-right environment and click on Crabs. You'll see that some of the column names are not very descriptive. Run the followling line to check what the column names represent:
+
+?Crabs
+
+```
+
+You'll see the class column contains two values: the species and the sex. Let's separate them so we can work with both species and sex as individual columns!
+
+## 2. Create new columns using mutate
+
+As said before, we want two new columns: species and sex. Enter: mutate!
+
+```{r}
+Crabs <- Crabs %>% 
+  mutate(
+    Species = str_sub(class, 1, 1),
+    Sex = str_sub(class, 2, 2)
+  ) 
+```
