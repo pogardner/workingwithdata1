@@ -56,11 +56,51 @@ data(Crabs)
 
 You'll see the class column contains two values: the species and the sex. Let's separate them so we can work with both species and sex as individual columns!
 
-## 2. Create new columns using mutate
+## 2. Create new columns using mutate and basic statistical functions
 
 As said before, we want two new columns: species and sex. Enter: mutate!
 
+Before we do that, let's practice a bit more with mutate and what it does.
+
+**What is mutate?** The mutate function is used to both modify existing column in a dataframe or create new ones without messing with any of the other columns. Cool! That means we can do things like add columns together, add an average column, pull out the year from a date, and much more.
+
+Let's start with some basics!
+
 ```{r}
+# Question: What is the area of a crab's carapace? Create a new column called carapace_area for each individual (row)
+Crabs <- Crabs %>% 
+  mutate(carapace_area = CL*CW)
+
+```
+
+We can also temporarily mutate columns without permanently committing them to the data frame. *Reminder: By putting Crabs\<- up above, I was creating permanent changes to the data frame. This can be undone by just reloading the data!*
+
+Let's temporarily change the data frame. All of the measurements are in mm. Let's make it into cm!
+
+```{r}
+Crabs %>% 
+  mutate(CL = CL*10,
+         CW = CW*10,
+         BD = BD*10,
+         FL = FL*10,
+         RW = RW*10)
+```
+
+Why would you want to do this? You can "pipe in" or %\>% these mutate functions into other things. For example, maybe you want to use ggplot to plot just the frontal lobe size in cm instead of mm. How might you do that?
+
+```{r}
+# We started this exercise for you, but you should go ahead and put your ggplot skills to use! Hint: notice for the data mapping in ggplot, when you pipe in and manipulate the data frame, you use a "." where you write data = .
+Crabs %>% 
+  mutate(FL = FL*10) %>% 
+  ggplot(data = ., )
+```
+
+Now let's try a cool function! The class column currently lists the species and sex. We will separate it into two separate columns.
+
+**Question: What do you think the str_sub function means? Go ahead and google it and put your answer below.**
+
+```{r}
+
 Crabs <- Crabs %>% 
   mutate(
     Species = str_sub(class, 1, 1),
