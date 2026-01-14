@@ -97,7 +97,7 @@ Crabs %>%
 
 Now let's try a cool function! The class column currently lists the species and sex. We will separate it into two separate columns.
 
-**Question: What do you think the str_sub function means? Go ahead and google it and put your answer below.**
+**Question: What do you think the str_sub function means? Go ahead and google it and put your answer below. Leave a descriptive comment about what each part of the line is doing.**
 
 ```{r}
 
@@ -107,3 +107,5 @@ Crabs <- Crabs %>%
     Sex = str_sub(class, 2, 2)
   ) 
 ```
+
+## 
