@@ -106,6 +106,94 @@ Crabs <- Crabs %>%
     Species = str_sub(class, 1, 1),
     Sex = str_sub(class, 2, 2)
   ) 
+
 ```
 
-## 
+Another way you can achieve the same result:
+
+```{r}
+rabs3 <- Crabs %>%
+  separate(
+    col = class,
+    into = c("species", "sex"),
+    sep = 1,
+    remove = FALSE
+  ) %>%
+  mutate(
+    species = case_when(
+      species == "B" ~ "Blue",
+      species == "O" ~ "Orange",
+      TRUE ~ species
+    ),
+    sex = case_when(
+      sex == "M" ~ "Male",
+      sex == "F" ~ "Female",
+      TRUE ~ sex
+    )
+  )
+
+```
+
+## 3. Plot
+
+Now, let's see do a quick plot and use Crabs2 to see if there are any differences by species by sex.
+
+```{r}
+ggplot(Crabs2, aes(x = CL, fill = sex)) +
+  geom_histogram(binwidth = 1, position = "identity", alpha = 0.6) +
+  facet_wrap(~ species) +
+  labs(
+    x = "Carapace length (mm) (CL)",
+    y = "Count",
+    fill = "Sex",
+    title = "Crab size (CL) by species and sex"
+  ) +
+  theme_minimal()
+
+```
+
+### Question 3.1: What differences can you see?
+
+## 4. Applications
+
+We're interested in using this data to communicate manages of the amount of crabs that are of harvestable length. We're not sure what measurement will be more conservative if CL Carpace length or CW Carpace width. Let's work with CL first.
+
+We'll use the column CL Carapace length (mm) and the case_when() function to create a new column names "CL_harvestable_state" that will take the range of 30-40 mm as "CL_Harvestable", anything under 29.9 mm as "CL_Non-harvestable" and anything over 40.1 mm as "C_Non-harvestable\_ reproductive females_reproductive".
+
+```{r}
+# create a new dataframe (Crabs2) with the desired columns
+Crabs2 <- Crabs %>%
+  mutate(
+    CL_harvestable_state = case_when(
+      CL >= 30 & CL <= 40 ~ "CL_Harvestable",
+      CL <= 29.9 ~ "CL_Non-harvestable",
+      CL >= 40.1 ~ "CL_Non-harvestable_reproductive",
+      TRUE ~ NA_character_
+    )
+  )
+view(Crabs2)
+```
+
+### Question 4.1
+
+Please copy-paste the code from above but for the CW Carapace width (mm) data for the following ranges in a new column called "CW_harvestable_state:" 34-44 mm as "CL_Harvestable", anything under 33.9 mm as "CL_Non-harvestable" and anything over 44.1 mm as "C_Non-harvestable_reproductive".
+
+```{r}
+
+```
+
+### Question 4.2
+
+Please use select(group_by() %\>% mutate(count()) to count the amount of CL_harvestable and CW_harvestable:
+
+```{r}
+
+```
+
+### Question 4.3
+
+Which of the measurements (CL vs CW) is more conservative with the amount of harvestable crabs?
+
+### Question 4.4
+
+Now, use what you've learned to make and respond to an additional questions such as: what measurement preserves the largest amount of reproductive females? Or, what species has the larges amount of non_harvestable_juvenile males?
