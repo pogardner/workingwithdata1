@@ -106,13 +106,13 @@ Crabs <- Crabs %>%
     Species = str_sub(class, 1, 1),
     Sex = str_sub(class, 2, 2)
   ) 
-
+Crabs
 ```
 
 Another way you can achieve the same result:
 
 ```{r}
-rabs3 <- Crabs %>%
+Crabs2 <- Crabs %>%
   separate(
     col = class,
     into = c("species", "sex"),
@@ -131,7 +131,7 @@ rabs3 <- Crabs %>%
       TRUE ~ sex
     )
   )
-
+Crabs2
 ```
 
 ## 3. Plot
@@ -161,7 +161,7 @@ We're interested in using this data to communicate manages of the amount of crab
 We'll use the column CL Carapace length (mm) and the case_when() function to create a new column names "CL_harvestable_state" that will take the range of 30-40 mm as "CL_Harvestable", anything under 29.9 mm as "CL_Non-harvestable" and anything over 40.1 mm as "C_Non-harvestable\_ reproductive females_reproductive".
 
 ```{r}
-# create a new dataframe (Crabs2) with the desired columns
+# Update our new dataframe (Crabs2) with the desired columns
 Crabs2 <- Crabs %>%
   mutate(
     CL_harvestable_state = case_when(
@@ -171,7 +171,7 @@ Crabs2 <- Crabs %>%
       TRUE ~ NA_character_
     )
   )
-view(Crabs2)
+Crabs2
 ```
 
 ### Question 4.1
