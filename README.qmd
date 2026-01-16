@@ -118,7 +118,7 @@ Crabs2 <- Crabs %>%
     into = c("species", "sex"),
     sep = 1,
     remove = FALSE
-  ) %>%
+  ) %>% # This second part is optional but helpful if you forget what the letters mean!
   mutate(
     species = case_when(
       species == "B" ~ "Blue",
@@ -132,6 +132,7 @@ Crabs2 <- Crabs %>%
     )
   )
 Crabs2
+
 ```
 
 ## 3. Plot
@@ -156,13 +157,14 @@ ggplot(Crabs2, aes(x = CL, fill = sex)) +
 
 ## 4. Applications
 
-We're interested in using this data to communicate manages of the amount of crabs that are of harvestable length. We're not sure what measurement will be more conservative if CL Carpace length or CW Carpace width. Let's work with CL first.
+We are interested in using this data to communicate the number of crabs that are of harvestable length. However, we are uncertain whether carapace length (CL) or carapace width (CW) will provide a more conservative estimate. Let's start by working with carapace length (CL) first.
 
-We'll use the column CL Carapace length (mm) and the case_when() function to create a new column names "CL_harvestable_state" that will take the range of 30-40 mm as "CL_Harvestable", anything under 29.9 mm as "CL_Non-harvestable" and anything over 40.1 mm as "C_Non-harvestable\_ reproductive females_reproductive".
+We will use the column "CL Carapace Length (mm)" along with the \`case_when()\` function to create a new column named "CL_harvestable_state." In this new column, we will categorize crabs as follows: those with a length in the range of 30 to 40 mm will be labeled as "CL_Harvestable," anything under 29.9 mm will be labeled as "CL_Non-harvestable," and anything over 40.1 mm will be categorized as "CL_Non-harvestable_reproductive."
 
 ```{r}
 # Update our new dataframe (Crabs2) with the desired columns
-Crabs2 <- Crabs %>%
+# Update our new dataframe (Crabs3) with the desired columns
+Crabs3 <- Crabs2 %>%
   mutate(
     CL_harvestable_state = case_when(
       CL >= 30 & CL <= 40 ~ "CL_Harvestable",
@@ -171,12 +173,12 @@ Crabs2 <- Crabs %>%
       TRUE ~ NA_character_
     )
   )
-Crabs2
+Crabs3
 ```
 
 ### Question 4.1
 
-Please copy-paste the code from above but for the CW Carapace width (mm) data for the following ranges in a new column called "CW_harvestable_state:" 34-44 mm as "CL_Harvestable", anything under 33.9 mm as "CL_Non-harvestable" and anything over 44.1 mm as "C_Non-harvestable_reproductive".
+For the same df, please copy and paste the code above, but modify it for the "CW Carapace Width (mm)" data. For this new column, named "CW_harvestable_state," use the following ranges: categorize lengths from 34 to 44 mm as "CW_Harvestable," anything under 33.9 mm as "CW_Non-harvestable," and anything over 44.1 mm as "CW_Non-harvestable_reproductive."
 
 ```{r}
 
@@ -188,6 +190,17 @@ Please use select(group_by() %\>% mutate(count()) to count the amount of CL_harv
 
 ```{r}
 
+```
+
+Now, let's use count() to count the amount of CL_harvestable and CW_harvestable:
+
+```{r}
+CL_counts<- Crabs3 %>% 
+  count(CL_harvestable_state)
+
+
+CW_counts <- Crabs3 %>% 
+   count(CW_harvestable_state)
 ```
 
 ### Question 4.3
