@@ -1,7 +1,7 @@
 ---
 title: "Working With Data 1"
 authors: Andrea Paz-Lacavex, Lance Takata, Paige Gardner
-format: html
+format: gfm
 editor: visual
 ---
 
