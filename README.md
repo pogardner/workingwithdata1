@@ -1,0 +1,39 @@
+# Working With Data 1
+Andrea Paz-Lacavex, Lance Takata, Paige Gardner
+
+## 
+
+In our Seaside Chat, we will be teaching about the use of some of the
+useful functions in tidyverse to work with data, such as:
+
+- Working with pre-existing data sets
+
+- Selecting ranges of data that we’re interested in exploring using
+  tidyverse functions mutate() and case_when()
+
+- Practice with data manipulation
+
+*This activity assumes students are somewhat familiar with the tidyverse
+package*
+
+# Learning Outcomes
+
+By the end of our Seaside Chat, students will be able to:
+
+- *Students will be able to confidently use Tidyverse tools to explore,
+  transform, and analyze a real dataset by creating new variables,
+  classifying data, visualizing results, and using these skills to ask
+  meaningful questions*.
+
+## Why did we pick this topic?
+
+As you learn new methods for working with data in R, it is important to
+practice those skills. For more experienced users, it is just as
+important to continue learning new skills that may improve your
+effectiveness and efficiency. mutate() and tidyverse functions/syntax
+are powerful, and mastering these skills is essential to an efficient R
+work flow.
+
+We also selected the data set on crabs so that we could ask relevant
+conservation questions that may reflect the research interests of
+students.
