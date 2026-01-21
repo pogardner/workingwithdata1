@@ -1,6 +1,6 @@
 ---
 title: "Working With Data 1"
-authors: Andrea Paz-Lacevex, Lance Takata, Paige Gardner
+authors: Andrea Paz-Lacavex, Lance Takata, Paige Gardner
 format: html
 editor: visual
 ---
@@ -162,7 +162,6 @@ We are interested in using this data to communicate the number of crabs that are
 We will use the column "CL Carapace Length (mm)" along with the \`case_when()\` function to create a new column named "CL_harvestable_state." In this new column, we will categorize crabs as follows: those with a length in the range of 30 to 40 mm will be labeled as "CL_Harvestable," anything under 29.9 mm will be labeled as "CL_Non-harvestable," and anything over 40.1 mm will be categorized as "CL_Non-harvestable_reproductive."
 
 ```{r}
-# Update our new dataframe (Crabs2) with the desired columns
 # Update our new dataframe (Crabs3) with the desired columns
 Crabs3 <- Crabs2 %>%
   mutate(
@@ -184,14 +183,6 @@ For the same df, please copy and paste the code above, but modify it for the "CW
 
 ```
 
-### Question 4.2
-
-Please use select(group_by() %\>% mutate(count()) to count the amount of CL_harvestable and CW_harvestable:
-
-```{r}
-
-```
-
 Now, let's use count() to count the amount of CL_harvestable and CW_harvestable:
 
 ```{r}
@@ -200,13 +191,9 @@ CL_counts<- Crabs3 %>%
 
 
 CW_counts <- Crabs3 %>% 
-   count(CW_harvestable_state)
+   count(CW_harvestable_state) 
 ```
 
 ### Question 4.3
+Now, use what you've learned to make and respond to an additional questions such as: what measurement preserves the largest amount of reproductive females?
 
-Which of the measurements (CL vs CW) is more conservative with the amount of harvestable crabs?
-
-### Question 4.4
-
-Now, use what you've learned to make and respond to an additional questions such as: what measurement preserves the largest amount of reproductive females? Or, what species has the larges amount of non_harvestable_juvenile males?
